@@ -1,0 +1,7 @@
+# Flask
+fastapi
+pandas
+numpy
+psycopg2==2.9.3
+jinja2
+python-multipart
