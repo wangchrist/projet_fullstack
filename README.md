@@ -34,6 +34,12 @@ Voici les étapes à suivre:
 
 ![alt text](accueil.png)
 
+**Aperçu de la base de données**
+
+Nous avons créer 3 tables: une table evenement où il y a toutes les informations necessaires: date, prix, lieu... une table utilisateur où il faut faire entrer le mot de passe ainsi que le nom d'utulisateur et enfin une table liste qui permet de stocker tous les evenements que l'utilisateur a mis en favoris.
+
+![alt text](database.png)
+
 **Aperçu de la page de connexion**
 
 ![alt text](connexion.png)
@@ -51,6 +57,13 @@ Eléments présents dans le dépots git :
 -Un dossier frontend: un dossier templates où y a tous les fichiers html necessaire pour l'affichage des requêtes, un Dockerfile et un requirements.txt ( librairies necessaires)
 
 - Un fichier docker-compose.yml: pour créer les containers et de les activer
+
+
+## Copyright
+
+Nous déclarons sur l'honneur que le code fourni a été produit par nous-mêmes.
+
+
 
 
 
