@@ -5,6 +5,7 @@ import psycopg2
 from psycopg2 import sql
 from clean import clean_data
 from insert import fill_db
+from fastapi import Query
 
 app = FastAPI() 
 
@@ -70,6 +71,30 @@ def create_user(username: str, password: str):
         print(f"Erreur lors de la création de l'utilisateur : {e}")
         return False
 
+def update_liste(event_name: str, username: str):
+    try:
+        query = sql.SQL("""
+            SELECT id FROM evenement WHERE titre = %s
+        """)
+        cursor.execute(query, (event_name,))
+        event_id = cursor.fetchone()
+
+        query = sql.SQL("""
+            SELECT id FROM utilisateur WHERE identifiant = %s
+        """)
+        cursor.execute(query, (username,))
+        user_id = cursor.fetchone()
+
+        query = sql.SQL("""
+            INSERT INTO liste (id_evenement, id_utilisateur) VALUES (%s, %s)
+        """)
+        cursor.execute(query, (event_id[0],user_id[0]))
+        conn.commit()
+                
+    except Exception as e:
+        print(f"Error updating liste: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+
 @app.get("/", response_class=HTMLResponse) 
 async def root(request: Request):
     return templates.TemplateResponse("accueil.html", {"request": request})
@@ -112,11 +137,14 @@ async def process_inscription_form( request: Request,username: str = Form(...), 
 async def tableau_de_bord(request: Request):
     try:
         query = sql.SQL("""
-        SELECT titre FROM evenement
+        SELECT titre, chapeau, date_de_debut, date_de_fin, description_de_la_date, mots_cles, nom_du_lieu, adresse_du_lieu, 
+                        code_postal, ville, url_de_contact, telephone_de_contact, email_de_contact, type_de_prix, detail_du_prix, 
+                        type_dacces, url_de_reservation, audience FROM evenement
         """)
         cursor.execute(query)
         results = cursor.fetchall()
-        events = [result[0] for result in results]
+        events = [(result[0], result[1], result[2], result[3],result[4],result[5], result[6], result[7], result[8],result[9],
+                   result[10], result[11], result[12], result[13],result[14],result[15], result[16], result[17]) for result in results]
         return templates.TemplateResponse("tableau_de_bord.html", {"request": request, "events": events})
     
     except psycopg2.Error as e:
@@ -124,4 +152,23 @@ async def tableau_de_bord(request: Request):
         events = []
     return templates.TemplateResponse("tableau_de_bord.html", {"request": request})
 
+
+@app.post("/tableau_de_bord", response_class=HTMLResponse)
+async def process_events_form(request: Request, selected_events: list = Form(...), username: str = Query(..., alias="username")):
+    try:
+        for event_name in selected_events:
+            update_liste(event_name, username)
+
+        return RedirectResponse(url=f"/tableau_de_bord?username={username}", status_code=303)
+
+    except Exception as e:
+        return templates.TemplateResponse("error.html", {"request": request, "error_message": str(e)})
+    
+
+@app.get("/traiter-formulaire", response_class=HTMLResponse)
+async def process_events_form(request: Request, username: str = Query(..., alias="username")):
+    
+    return RedirectResponse(url=f"/tableau_de_bord?username={username}", status_code=303)
+
+    
 
