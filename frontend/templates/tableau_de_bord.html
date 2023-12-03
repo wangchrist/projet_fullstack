@@ -7,37 +7,100 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            display: flex;
             margin: 50px;
+        }
+
+        .sidebar {
+            flex: 0 0 200px; /* Largeur fixe de la colonne latérale */
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: left;
         }
 
         h1 {
             color: #333;
+            margin-left: 20px; /* Marge à gauche pour laisser de l'espace à la colonne latérale */
         }
 
-        .event-checkbox {
+        .event-column {
+            flex: 1;
+        }
+
+        .event-details {
+            margin-bottom: 20px;
+        }
+
+        .event-title {
+            font-size: 1.2em;
             margin-bottom: 10px;
+        }
+
+        .event-info {
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .checkbox-label {
+            display: block;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Tableau de Bord</h1>
+    <div class="sidebar">
+        <h2>Mes Événements</h2>
+        <!-- Ajoutez ici tout contenu ou liens liés à vos événements personnels -->
+    </div>
 
-    <form action="/traiter-formulaire" method="post">
-        {% if events %}
-            {% for event in events %}
-                <div class="event-checkbox">
-                    <input type="checkbox" id="event_{{ event }}" name="selected_events" value="{{ event }}">
-                    <label for="event_{{ event }}">{{ event }}</label>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>Aucun événement trouvé.</p>
-        {% endif %}
+    <div class="event-column">
+        <h1>Tableau de Bord</h1>
 
-        <input type="submit" value="Enregistrer la sélection">
-    </form>
+        <form action="/traiter-formulaire" method="post">
+            {% if events %}
+                {% for event in events %}
+                    <div class="event-details">
+                        <label class="checkbox-label" for="event_{{ event[0] }}">
+                            <input type="checkbox" id="event_{{ event[0] }}" name="selected_events" value="{{ event[0] }}">
+                            <span class="event-title">{{ event[0] }}</span>
+                        </label>
+                        <p class="event-info"><strong>Chapeau:</strong> {{ event[1] }}</p>
+                        <p class="event-info"><strong>Date de début:</strong> {{ event[2] }}</p>
+                        <p class="event-info"><strong>Date de fin:</strong> {{ event[3] }}</p>
+                        <p class="event-info"><strong>Description de la date:</strong> {{ event[4] }}</p>
+                        <p class="event-info"><strong>Mots clés:</strong> {{ event[5] }}</p>
+                        <p class="event-info"><strong>Nom du lieu:</strong> {{ event[6] }}</p>
+                        <p class="event-info"><strong>Adresse du lieu:</strong> {{ event[7] }}</p>
+                        <p class="event-info"><strong>Code postal:</strong> {{ event[8] }}</p>
+                        <p class="event-info"><strong>Ville:</strong> {{ event[9] }}</p>
+                        <p class="event-info"><strong>URL de contact:</strong> {{ event[10] }}</p>
+                        <p class="event-info"><strong>Téléphone de contact:</strong> {{ event[11] }}</p>
+                        <p class="event-info"><strong>Email de contact:</strong> {{ event[12] }}</p>
+                        <p class="event-info"><strong>Type de prix:</strong> {{ event[13] }}</p>
+                        <p class="event-info"><strong>Detail du prix:</strong> {{ event[14] }}</p>
+                        <p class="event-info"><strong>Type d'accès:</strong> {{ event[15] }}</p>
+                        <p class="event-info"><strong>URL de réservation:</strong> {{ event[16] }}</p>
+                        <p class="event-info"><strong>Audience:</strong> {{ event[17] }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucun événement trouvé.</p>
+            {% endif %}
+
+            <input type="submit" value="Enregistrer la sélection">
+        </form>
+
+        <script>
+            // Extrait le paramètre username de l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+
+            // Met à jour l'action du formulaire avec le username extrait
+            const form = document.getElementById('eventForm');
+            form.action = `/tableau_de_bord?username=${username}`;
+        </script>
+    </div>
 
 </body>
 </html>
