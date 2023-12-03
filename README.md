@@ -30,9 +30,19 @@ Voici les étapes à suivre:
 
 ![alt text](docker.jpeg)
 
-**Aperçu de la page d'acceuil**
+**Aperçu de la page d'accueil**
 
-![alt text](acceuil.png)
+![alt text](accueil.png)
+
+**Aperçu de la page de connexion**
+
+![alt text](connexion.png)
+
+**Aperçu de la page d'inscription**
+
+![alt text](inscription.png)
+
+
 
 
 
