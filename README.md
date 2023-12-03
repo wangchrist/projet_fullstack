@@ -24,7 +24,11 @@ Voici les étapes à suivre:
 > docker compose up
 
 ```
--Pour lancer la page web, vous devez cliquer sur le port du container backend
+-Pour lancer la page web, vous devez cliquer sur le port du container backend 32844:5000
+
+**Aperçu du docker**
+
+![alt text](docker.jpeg)
 
 
 
