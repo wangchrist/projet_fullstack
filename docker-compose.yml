@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  # Service pour l'API Flask
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+    volumes:
+      - ./backend:/app
+      - ./frontend/templates:/app/templates
+
+  # Service pour la base de données PostgreSQL
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+
+  # Service pour le front-end Flask
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+
+

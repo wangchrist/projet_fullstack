@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .event-checkbox {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tableau de Bord</h1>
+
+    <form action="/traiter-formulaire" method="post">
+        {% if events %}
+            {% for event in events %}
+                <div class="event-checkbox">
+                    <input type="checkbox" id="event_{{ event }}" name="selected_events" value="{{ event }}">
+                    <label for="event_{{ event }}">{{ event }}</label>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucun événement trouvé.</p>
+        {% endif %}
+
+        <input type="submit" value="Enregistrer la sélection">
+    </form>
+
+</body>
+</html>
