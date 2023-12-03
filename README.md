@@ -11,12 +11,21 @@ Pour ce projet, nous avons décidé d'utiliser les données sur les évenements 
 ## Comment lancer le projet ?
 Voici les étapes à suivre:
 
--Cloner le lien de notre git avec la commande suivante : 
+-Clonez le lien de notre git avec la commande suivante : 
 
  ```
-> git clone https://github.com/wangchrist/dataenginnering_sac_luxe.git
+> git clone https://github.com/wangchrist/projet_fullstack_final.git
 
 ```
+-Lancez docker puis allez dans le repertoire projet_fullstack_final pour lancer le fichier docker-compose.yml ( pour créer les containers et de les activer )avec la commande suivante:
+
+ ```
+> docker compose build
+> docker compose up
+
+```
+
+
 
 
 
