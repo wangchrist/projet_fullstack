@@ -30,6 +30,10 @@ Voici les étapes à suivre:
 
 ![alt text](docker.jpeg)
 
+**Aperçu de la page d'acceuil**
+
+![alt text](acceuil.png)
+
 
 
 
