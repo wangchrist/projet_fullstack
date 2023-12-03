@@ -42,6 +42,17 @@ Voici les étapes à suivre:
 
 ![alt text](inscription.png)
 
+## Developer's guide
+
+Eléments présents dans le dépots git :
+
+- Un dossier backend : app.py (logique côté server) clean.py ( nettoyage des données du fichier evenement.csv puis va générer un nouveau fichier csv evenement_clean.csv), insert.py (créer les tables nécessaires ainsi que d'insérer les données du fichier evenement_clean.csv), un Dockerfile qui contient les instructions nécessaires à la création de l' image de conteneur backend et un fichier requirements.txt oû y a tous les librairies necessaires.
+
+-Un dossier frontend: un dossier templates où y a tous les fichiers html necessaire pour l'affichage des requêtes, un Dockerfile et un requirements.txt ( librairies necessaires)
+
+- Un fichier docker-compose.yml: pour créer les containers et de les activer
+
+
 
 
 
