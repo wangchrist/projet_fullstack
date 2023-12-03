@@ -52,6 +52,10 @@ Nous avons créer 3 tables: une table evenement où il y a toutes les informatio
 
 ![alt text](tableau_de_bord.png)
 
+**Problème**
+
+L'application ne marche pas, l'autentification fonctionne mais la fait d'ajouter un évenement à sa liste d'évenements ne marche pas. C'est à finaliser.
+
 ## Developer's guide
 
 Eléments présents dans le dépots git :
