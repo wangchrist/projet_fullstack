@@ -48,6 +48,10 @@ Nous avons créer 3 tables: une table evenement où il y a toutes les informatio
 
 ![alt text](inscription.png)
 
+**Aperçu du tableau de bord**
+
+![alt text](tableau_de_bord.png)
+
 ## Developer's guide
 
 Eléments présents dans le dépots git :
