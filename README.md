@@ -24,6 +24,7 @@ Voici les étapes à suivre:
 > docker compose up
 
 ```
+-Pour lancer la page web, vous devez cliquer sur le port du container backend
 
 
 
