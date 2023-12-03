@@ -52,9 +52,22 @@ Nous avons créer 3 tables: une table evenement où il y a toutes les informatio
 
 Eléments présents dans le dépots git :
 
-- Un dossier backend : app.py (logique côté server) clean.py ( nettoyage des données du fichier evenement.csv puis va générer un nouveau fichier csv evenement_clean.csv), insert.py (créer les tables nécessaires ainsi que d'insérer les données du fichier evenement_clean.csv), un Dockerfile qui contient les instructions nécessaires à la création de l' image de conteneur backend et un fichier requirements.txt oû y a tous les librairies necessaires.
+Dans le dossier dossier backend :
+- app.py (logique côté server)
 
--Un dossier frontend: un dossier templates où y a tous les fichiers html necessaire pour l'affichage des requêtes, un Dockerfile et un requirements.txt ( librairies necessaires)
+- clean.py ( nettoyage des données du fichier evenement.csv puis va générer un nouveau fichier csv evenement_clean.csv)
+
+- insert.py (créer les tables nécessaires ainsi que d'insérer les données du fichier evenement_clean.csv)
+
+- un Dockerfile qui contient les instructions nécessaires à la création de l' image de conteneur backend
+
+- un fichier requirements.txt oû y a tous les librairies necessaires.
+
+Dans le dossier frontend: 
+
+- un dossier templates où y a tous les fichiers html necessaire pour l'affichage des requêtes
+- un Dockerfile 
+- un requirements.txt ( librairies necessaires)
 
 - Un fichier docker-compose.yml: pour créer les containers et de les activer
 
